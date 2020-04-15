@@ -1,0 +1,37 @@
+project_name: "free-hls.go"
+
+builds:
+  - env:
+      - CGO_ENABLED=0
+    goos:
+      - windows
+      - linux
+      - darwin
+    goarch:
+      - amd64
+
+archives:
+  - replacements:
+      darwin: darwin
+      linux: linux
+      windows: windows
+      amd64: x86_64
+    files:
+      - LICENSE
+      - README.md
+      - config.toml
+      - server/web/hls.light.min.js
+      - server/web/player.js
+      - server/web/player.css
+      - server/web/favicon.ico
+      - server/web/player.html
+checksum:
+  name_template: "{{ .ProjectName }}_checksums.txt"
+snapshot:
+  name_template: "{{ .Tag }}-next"
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"

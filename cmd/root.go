@@ -23,14 +23,15 @@ var (
 		Short: "Print the version number of FreeHLS.go",
 		Run: func(cmd *cobra.Command, args []string) {
 			fmt.Printf(
-				"FreeHLS.go %s\nGo Version: %s\nBuild Time: %s\n",
-				Version, GoVersion, BuildTime,
+				"FreeHLS.go %s\nBuild Commit: %s\nBuild Date: %s\n",
+				Version, Commit, BuildDate,
 			)
 		},
 	}
 )
 
-func Execute() {
+func Execute(version, commit, buildDate string) {
+	Version, Commit, BuildDate = version, commit, buildDate
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)
 		os.Exit(1)
