@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ .title }}</title>
+    <link href="/player.css" rel="stylesheet" />
+    <script src="/hls.light.min.js"></script>
+    <script src="/player.js"></script>
+    <style>
+      body {
+        position: fixed;
+        top: 0;
+        left: 0;
+        margin: 0;
+        padding: 0;
+      }
+      #player {
+        position: fixed;
+        z-index: 100000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="player" class="dplayer-fulled"></div>
+
+    <script>
+      const dp = new DPlayer({
+        container: document.getElementById("player"),
+        screenshot: true,
+        logo: "",
+        video: {
+          url: "data:application/vnd.apple.mpegurl;base64,{{ .data }}",
+          type: "hls",
+        },
+        contextmenu: [
+          {
+            text: "跳過OP (大概)",
+            click: (player) => {
+              var nextTime = parseInt(dp.video.currentTime + 90);
+              if (dp.video.duration > nextTime) {
+                dp.seek(nextTime);
+              } else {
+                dp.notice("影片剩餘不足90秒");
+              }
+            },
+          },
+        ],
+      });
+    </script>
+  </body>
+</html>

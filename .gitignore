@@ -1,0 +1,8 @@
+tmp/
+userdata/
+.env
+.idea
+.vscode
+
+**/*.exe
+**/*.mp4

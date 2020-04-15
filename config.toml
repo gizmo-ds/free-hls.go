@@ -1,0 +1,17 @@
+[server]
+dataDir = "userdata"
+fileSizeLimit = 5242880
+useUploadKey = true
+uploadKeys = [
+  "1dba4fbe61a80da2d4eacf9a14740094",
+  "36c91ff41f75d94684df3ddbd8640d5e"
+]
+
+[client]
+server = "http://localhost:8787"
+uploadKey = "1dba4fbe61a80da2d4eacf9a14740094"
+tmpDir = "tmp"
+
+[client.proxy]
+upload = ""
+push = ""
